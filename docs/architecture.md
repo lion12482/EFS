@@ -177,5 +177,12 @@ Response `200`:
 ```
 
 Notes:
-- API is authless for MVP (public/unlisted).
+- API uses lightweight guest auth for fit creation/fork/settings; fit viewing remains shareable by fit id.
 - Price cache TTL target: 6h; refresh only requested `typeIds`.
+
+
+## 6) Deduplication decisions (current state)
+
+- **Web API base URL is centralized** in `apps/web/lib/config.ts` and reused by server routes/loaders so API target logic is not duplicated.
+- **Fit schema version remains centralized** as `FIT_SCHEMA_V1` in `packages/core/src/model/constants.ts`; API/runtime checks import this constant directly.
+- **Intentional duplication:** Mobile screen placeholders are still split by feature (`Fits`, `Editor`, `Stats`, `Browser`, `Settings`) to keep MVP iteration isolated while create/edit/save UX is unfinished.
