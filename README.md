@@ -29,6 +29,7 @@ pnpm --filter @efs/core test
 - See `docs/architecture.md` for implementation plan, serialization spec, and API contract.
 - See `docs/feature-mapping.md` for requirement-to-module binding/status.
 - See `docs/duplication-summary.md` for deduplication changes and rationale.
+- See `docs/product/mvp-scope.md` for the MVP brief, success metrics, and signed scope priorities.
 - Dogma effect pipeline is intentionally incremental (MVP legality + base stats first).
 
 ## Packaging
