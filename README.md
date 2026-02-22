@@ -30,6 +30,7 @@ pnpm --filter @efs/core test
 - See `docs/feature-mapping.md` for requirement-to-module binding/status.
 - See `docs/duplication-summary.md` for deduplication changes and rationale.
 - See `docs/product/mvp-scope.md` for the MVP brief, success metrics, and signed scope priorities.
+- See `docs/product/pilot-operations-plan.md` for pilot rollout, instrumentation, triage, and go/no-go process.
 - Dogma effect pipeline is intentionally incremental (MVP legality + base stats first).
 
 ## Packaging
