@@ -29,6 +29,7 @@ export default async function FitViewerPage({ params }: { params: Promise<{ id: 
       <div>PG: {data.stats.fitting.powergridUsed}/{data.stats.fitting.powergridMax}</div>
       <div>EHP: {data.stats.ehp}</div>
       <ForkButton fitId={id} />
+      <small>After forking, tune your preferences in <a href="/settings">settings</a>.</small>
       <div>Deep link: efs://fit/{id}</div>
     </main>
   );

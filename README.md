@@ -50,3 +50,12 @@ pnpm --filter @efs/core test
   ```
 
 > Apps (`apps/api`, `apps/web`, `apps/mobile`) are deployment targets and are not intended for npm publishing.
+
+## MVP web flow
+- `POST /v1/auth/guest` to create a guest session token.
+- Open `/fit/<id>` and use **Fork to edit** as the core action.
+- Review fit stats on the fit page and tune telemetry/visibility in `/settings`.
+
+## Environment
+- API: `PORT`, `WEB_BASE_URL`, `DATABASE_DIR`
+- Web: `API_BASE_URL`
