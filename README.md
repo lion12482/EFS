@@ -28,9 +28,7 @@ pnpm --filter @efs/core test
 ## Notes
 - See `docs/architecture.md` for implementation plan, serialization spec, and API contract.
 - See `docs/feature-mapping.md` for requirement-to-module binding/status.
-- See `docs/duplication-summary.md` for deduplication changes and rationale.
 - See `docs/product/mvp-scope.md` for the MVP brief, success metrics, and signed scope priorities.
-- See `docs/product/pilot-operations-plan.md` for pilot rollout, instrumentation, triage, and go/no-go process.
 - Dogma effect pipeline is intentionally incremental (MVP legality + base stats first).
 
 ## Packaging
@@ -54,8 +52,7 @@ pnpm --filter @efs/core test
 
 ## MVP web flow
 - `POST /v1/auth/guest` to create a guest session token.
-- Open `/fit/<id>` and use **Fork to edit** as the core action.
-- Review fit stats on the fit page and tune telemetry/visibility in `/settings`.
+- Open `/fit/<id>` to view a shared fit and use **Fork to edit** as the core action.
 
 ## Environment
 - API: `PORT`, `WEB_BASE_URL`, `DATABASE_DIR`
