@@ -4,13 +4,19 @@ import { fileURLToPath } from "node:url";
 import Database from "better-sqlite3";
 import { env } from "./config";
 
+type SqliteDb = {
+  pragma: (source: string) => unknown;
+  exec: (sql: string) => unknown;
+  prepare: (sql: string) => any;
+};
+
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(currentDir, "..");
 
 const dataDir = path.resolve(projectRoot, env.DATABASE_DIR);
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
-export const db = new Database(path.join(dataDir, "efs.sqlite"));
+export const db: SqliteDb = new Database(path.join(dataDir, "efs.sqlite"));
 
 db.pragma("journal_mode = WAL");
 
