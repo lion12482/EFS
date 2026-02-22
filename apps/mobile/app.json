@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "EFS",
+    "slug": "efs",
+    "scheme": "efs",
+    "version": "0.1.0",
+    "orientation": "portrait"
+  }
+}
