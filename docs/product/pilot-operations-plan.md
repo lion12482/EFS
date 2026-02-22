@@ -49,7 +49,8 @@ Run a controlled MVP pilot with a small cohort, collect reliable funnel and feed
 ### KPI formulas
 - **Activation:** users with `fit_saved_valid` in first session / new pilot users.
 - **W1 retention:** activated users with `session_started` between day 7–13 / activated users.
-- **Share conversion:** users with `fit_share_viewed` / users with `fit_saved_valid`.
+- **Share conversion:** fit owners with at least one view on a shared fit / users with `fit_saved_valid`.
+  - Compute by joining `fit_share_viewed.fit_id` back to the fit owner (or by emitting an equivalent owner-scoped metric) so viewers are never counted in the numerator.
 
 ## 3) Weekly review cadence
 
