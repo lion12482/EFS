@@ -17,9 +17,9 @@ This document binds product requirements to concrete modules so each feature has
 | Requirement | Module(s) | Status |
 |---|---|---|
 | Tabbed nav shell | `apps/mobile/src/App.tsx` | ✅ implemented |
-| Fit editor baseline | `apps/mobile/src/screens/EditorScreen.tsx`, `apps/mobile/src/store/useFitStore.ts` | 🟡 scaffold |
+| Fit editor baseline (name + slot add/remove controls) | `apps/mobile/src/screens/EditorScreen.tsx`, `apps/mobile/src/store/useFitStore.ts` | ✅ implemented |
 | Stats summary panel | `apps/mobile/src/screens/StatsScreen.tsx` | ✅ implemented |
-| Local fit + price persistence schema | `apps/mobile/src/db/schema.sql` | ✅ schema implemented |
+| Local fit + price persistence schema | `apps/mobile/src/db/schema.sql` | ✅ schema implemented (SQLite wiring next) |
 
 ## Web viewer + URL sharing
 
