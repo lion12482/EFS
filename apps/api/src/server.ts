@@ -74,6 +74,44 @@ app.post("/v1/fits", (req, reply) => {
   }
 });
 
+app.get("/v1/fits", (req, reply) => {
+  try {
+    const auth = requireAuth(req, reply);
+    if (!auth) return;
+    const query = req.query as { q?: string; hull?: string };
+
+    let sql = "SELECT * FROM shared_fits WHERE owner_user_id = ?";
+    const params: any[] = [auth.userId];
+
+    if (query.q) {
+      sql += " AND json_extract(fit_json, '$.name') LIKE ?";
+      params.push(`%${query.q}%`);
+    }
+
+    if (query.hull) {
+      sql += " AND json_extract(fit_json, '$.hullTypeId') = ?";
+      params.push(parseInt(query.hull, 10));
+    }
+
+    sql += " ORDER BY created_at DESC";
+
+    const rows = db.prepare(sql).all(...params) as any[];
+    const fits = rows.map((row) => ({
+      id: row.id,
+      parentId: row.parent_id,
+      version: row.version,
+      visibility: row.visibility,
+      fit: deserializeFit(row.fit_json),
+      createdAt: row.created_at
+    }));
+
+    return { fits };
+  } catch (error) {
+    captureError(error, app.log, "GET /v1/fits");
+    return reply.code(500).send({ error: "internal_error" });
+  }
+});
+
 app.get("/v1/fits/:id", (req, reply) => {
   try {
     const id = (req.params as { id: string }).id;
