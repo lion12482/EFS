@@ -1,12 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Fit, ItemDefinition, SlotKind } from "@efs/core";
 import { seedDataPack } from "@efs/datapack-seed";
 
 export function FitEditor({ initialFit, initialStats }: { initialFit: Fit, initialStats: any }) {
     const [fit, setFit] = useState<Fit>(initialFit);
     const [stats, setStats] = useState(initialStats);
+
+    useEffect(() => {
+        let cpu = 0;
+        let pg = 0;
+        const processSlot = (kind: SlotKind) => {
+            for (const item of (fit.slots[kind] || [])) {
+                const itemDef = seedDataPack.items[item.typeId];
+                if (itemDef && itemDef.group === "module") {
+                    cpu += itemDef.cpu || 0;
+                    pg += itemDef.powergrid || 0;
+                }
+            }
+        };
+        processSlot("high");
+        processSlot("mid");
+        processSlot("low");
+        processSlot("rig");
+
+        setStats((prev: any) => ({
+            ...prev,
+            fitting: { ...prev.fitting, cpuUsed: cpu, powergridUsed: pg }
+        }));
+    }, [fit]);
 
     const hull = seedDataPack.items[fit.hullTypeId];
     if (!hull || hull.group !== "ship") return <div>Invalid Hull</div>;
